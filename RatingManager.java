@@ -124,7 +124,78 @@ public class RatingManager {
 	
 	// Return the list of all items having the highest average rating (for example if the highest average rating is 4.9, the method should return all items with average rating 4.9)
 	public LinkedList<Integer> getHighestRatedItems(){
-		LinkedList<Integer> i=new LinkedList<Integer>();
+		LinkedList<Integer> items=new LinkedList<Integer>();
+		LinkedList<Double> avgs=new LinkedList<Double>();
+		double maxAvg=-1;
+		while(!ratings.last()){
+			int r=ratings.retrieve.getItemId();
+			i.findFirst();
+			while(!i.last()){
+				if(i.retrieve()!=r){
+					
+					double avg=getAverageItemRating(r);
+					
+					if(avg>maxAvg)
+						maxAvg=avg;
+					items.insert(r);
+					avgs.insert(avg);
+					
+				}
+				i.findNext();
+			}
+			if(i.retrieve()!=r){
+				
+				double avg=getAverageItemRating(r);
+				
+				if(avg>maxAvg)
+					maxAvg=avg;
+				items.insert(r);
+				avgs.insert(avg);
+				
+			}
+			
+		}
+		while(!i.last()){
+			if(i.retrieve()!=r){
+				
+				double avg=getAverageItemRating(r);
+				
+				if(avg>maxAvg)
+					maxAvg=avg;
+				items.insert(r);
+				avgs.insert(avg);
+				
+			}
+			items.findNext();
+		}
+		if(i.retrieve()!=r){
+			
+			double avg=getAverageItemRating(r);
+			
+			if(avg>maxAvg)
+				maxAvg=avg;
+			items.insert(r);
+			avgs.insert(avg);
+			
+		}
+		
+		
+	
+		
+		Linkedlist<Integer> his=new LinkedList<Integer>();
+		items.findFirst();avgs.findFirst();
+		while(!avgs.last()){
+			if(maxAvg==avgs.retrieve())
+				his.insert(items.retrieve());
+			items.findNext();
+			avgs.findNext();
+		}
+		if(maxAvg==avgs.retrieve())
+			his.insert(items.retrieve());
+		
+		return his;
+		
+		
 		
 	}
 }
