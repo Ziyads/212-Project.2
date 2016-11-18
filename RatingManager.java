@@ -78,7 +78,6 @@ public class RatingManager {
 	
 	// Return the average rating of item j. If i has no ratings, -1 is returned
 	public double getAverageItemRating(int j){
-		LinkedList<Rating> r=new LinkedList<Rating>();
 		double sum=0;
 		int count=0;
 		
@@ -95,14 +94,37 @@ public class RatingManager {
 			sum+=ratings.retrieve().getValue();
 			count++;
 		}
-		
+
 		return sum/count;
 		
 	}
 	
 	// Return the average rating given by user i. If i has no ratings, -1 is returned
-	public double getAverageUserRating(int i);
+	public double getAverageUserRating(int i){
+		double sum=0;
+		int count=0;
+		
+		rating.findFirst();
+		while(!rating.last()){
+			if(ratings.retrieve().getUserId()==i){
+				sum+=ratings.retrieve().getValue();
+				count++;
+			}
+				
+			rating.findNext();
+		}
+		if(ratings.retrieve().getUserId()==i){
+			sum+=ratings.retrieve().getValue();
+			count++;
+		}
+
+		return sum/count;
+		
+	}
 	
 	// Return the list of all items having the highest average rating (for example if the highest average rating is 4.9, the method should return all items with average rating 4.9)
-	public LinkedList<Integer> getHighestRatedItems();
+	public LinkedList<Integer> getHighestRatedItems(){
+		LinkedList<Integer> i=new LinkedList<Integer>();
+		
+	}
 }
